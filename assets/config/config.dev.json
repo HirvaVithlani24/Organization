@@ -1,0 +1,12 @@
+{
+    "env": {
+        "name": "dev"
+    },
+    "logging": {
+        "debug": true,
+        "serverLoggingUrl": "http://localhost:8004/",
+        "logLevel": "WARN",
+        "serverLogLevel": "ERROR",
+        "disableConsoleLogging": false
+    }
+}

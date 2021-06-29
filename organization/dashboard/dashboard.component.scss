@@ -1,0 +1,42 @@
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+/*tells the browser how the arrows will appear*/
+  
+// ::-webkit-scrollbar-button:single-button {
+//     background-color: red;
+//     height: 16px;
+//     width: 16px;
+// }
+/* tells the browser how the scrollable 
+  handle would look like */
+  
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+::ng-deep .myCustomModalClass .modal-dialog { 
+    max-width: 80%;
+    width: 80%;
+    
+}
+
+
+::ng-deep .myCustomModalClass .modal-body { 
+    max-height: 80%;
+    height: 80%;
+    
+}
+
+input:not(searchBtn:focus:active)
+{
+    border-width:1px!important;
+    border-color:rgb(133,133,133)!important;
+    background-color: none!important;
+}
+
+
+
+

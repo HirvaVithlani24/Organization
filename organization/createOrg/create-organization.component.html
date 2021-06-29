@@ -1,0 +1,218 @@
+<!-- <div class = "modal-dialog modal-lg"> -->
+    <div class = "modal-content"> 
+        <div class="modal-header">
+            <h2 class="modal-title" id="modal-basic-title">Create Organization</h2>
+            <button type="button" class="close" data-dismiss="modal" (click)="closeModal('dismiss')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <div class="col-lg-6 pl-0">
+                <form [formGroup]="Organization">
+                <label class="form-control-placeholder" for="name">Organization</label>
+                <input 
+                type="text"
+                id="org"
+                formControlName="Org"
+                class="form-control" 
+                [(ngModel)]="model" 
+                [ngbTypeahead]="search" 
+                (ngModelChange)="onKeypressEvent($event)">
+
+  </form>
+              </div>
+                <!-- <div class="col-lg-6 pl-0">
+                  <form [formGroup]="Organization">
+                    <label class="select-form-control-placeholder" for="name">Organization</label>
+                     <input
+                     [value]="search1"
+                     formControlName="Org"
+                     ngxTypeahead
+                     id="org"
+                     type="text"
+                     class="form-control"
+                     [taList]="orgModel" 
+                     (keydown.enter)="onKeypressEvent($event)"                  
+                     (taSelected)="selectedStatic($event)">  
+                    </form>               
+                  </div>     -->
+                  <br/>
+            <form [formGroup]="OrgDetailForm">
+            <div class="row">
+              <div class="form-group col-lg-3">
+                <div class="label" id="lblOrgId" >
+                  Org Id
+               
+                 </div>
+                <input
+                  type="number"
+                  id="OrgId"
+                  class="form-control"
+                  formControlName="OrgId"
+                  [readonly]="true"
+                >
+              <!-- <div *ngIf="OrgDetailForm.get('OrgId')?.invalid && 
+                  OrgDetailForm.get('OrgId')?.errors && 
+                  (OrgDetailForm.get('OrgId')?.dirty || OrgDetailForm.get('OrgId')?.touched)">
+                <small class="text-danger"
+                    *ngIf="OrgDetailForm.get('OrgId')?.hasError('required')">
+                    Org Id is required.
+                </small>
+                <small class="text-danger" *ngIf=" OrgDetailForm.get('OrgId')?.hasError('min')">
+                  Minimum required number is 0
+                </small> 
+            <small class="text-danger" *ngIf=" OrgDetailForm.get('OrgId')?.hasError('max')">
+                  Maximum number can be 1000.
+            </small>
+            </div> -->
+              </div>
+              <div class=" form-group col-lg-3">
+                <div class="label" id="lblOrgName" >
+                  Org Name
+                <span class="star">*</span></div>
+                <input
+                  type="text"
+                  id="OrgName"
+                  class="form-control"
+                  formControlName="OrgName"
+                  required
+
+                >
+                <div *ngIf="OrgDetailForm.get('OrgName')?.invalid && OrgDetailForm.get('OrgId')?.errors && 
+                (OrgDetailForm.get('OrgName')?.dirty || OrgDetailForm.get('OrgName')?.touched) || 
+                (OrgDetailForm.get('OrgName')?.untouched && this.formSubmitAttempt)">
+                  <small class="text-danger"
+                      *ngIf="OrgDetailForm.get('OrgName')?.hasError('required')">
+                      Org Name is required.
+                  </small>
+              </div>
+              </div>
+              <div class=" form-group col-lg-3">
+                <div class="label" id="lblAliasName" >
+                  Alias Name
+                  <span class="star">*</span> </div>
+                <input
+                  type="text"
+                  id="AliasName"
+                  class="form-control"
+                  formControlName="AliasName"
+                  required
+                >
+                <div *ngIf="OrgDetailForm.get('AliasName')?.invalid && 
+                (OrgDetailForm.get('AliasName')?.dirty || OrgDetailForm.get('AliasName')?.touched) || 
+                (OrgDetailForm.get('OrgName')?.untouched && this.formSubmitAttempt)">
+                  <small class="text-danger"
+                      *ngIf="OrgDetailForm.get('AliasName')?.hasError('required')">
+                      Alias Name is required.
+                  </small>
+              </div>
+              </div>           
+              <div class="form-group col-lg-3">
+                <div class="label" id="lblStatus" >
+                  Status
+                  <span class="star">*</span> </div>
+                  <select class="form-control" required id = "Status" 
+                  formControlName="Status" (change)="changeStatus($event)">
+                    <!-- <option disabled>Choose Value</option> -->
+                    <option value="">Choose Status</option>
+                    <option *ngFor="let status of statusModel">
+                      {{status}}
+                    </option>
+                  </select>
+                <!-- <input
+                  type="text"
+                  id="Status"
+                  class="form-control"
+                  formControlName="Status"
+                  required
+                > -->
+                <div *ngIf="OrgDetailForm.get('Status')?.invalid && 
+                OrgDetailForm.get('Status')?.errors && 
+                (OrgDetailForm.get('Status')?.dirty || OrgDetailForm.get('Status')?.touched) || 
+                (OrgDetailForm.get('OrgName')?.untouched && this.formSubmitAttempt)">
+                  <small class="text-danger"
+                      *ngIf="OrgDetailForm.get('Status')?.hasError('required')">
+                      Status is required.
+                  </small>
+              </div>
+              </div>
+            </div>   
+            <div class="row">
+              <div class="form-group col-lg-3">
+                <div class="label" id="lblTime" >
+                  Time
+                </div>
+                <input
+                  type="time"
+                  id="Time"
+                  class="form-control"
+                  formControlName="Time"
+                >
+              </div>
+              <div class="form-group col-lg-3">
+                <div class="label" id="lblEmail" >
+                  Email
+                </div>
+                <input
+                  type="email"
+                  id="Email"
+                  class="form-control"
+                  formControlName="Email"
+                >
+                <div *ngIf="OrgDetailForm.get('Email')?.invalid && 
+                OrgDetailForm.get('Email')?.errors && 
+                (OrgDetailForm.get('Email')?.dirty || OrgDetailForm.get('Email')?.touched) || 
+                (OrgDetailForm.get('OrgName')?.untouched && this.formSubmitAttempt)">
+                  <small class="text-danger"
+                      *ngIf="OrgDetailForm.get('Email')?.hasError('email')">
+                      Please, enter valid email address.
+                  </small>
+              </div>
+              </div>
+              <div class="form-group col-lg-3">
+                <div class="label" id="lblDate">
+                  Date
+                   </div>
+                <input
+                  type="date"
+                  id="Date"
+                  class="form-control"
+                  formControlName="Date"
+                >
+                <!-- <div *ngIf="OrgDetailForm.get('Date')?.invalid && 
+                OrgDetailForm.get('Date')?.errors && 
+                (OrgDetailForm.get('Date')?.dirty || OrgDetailForm.get('Date')?.touched)">
+                  <small class="text-danger"
+                      *ngIf="OrgDetailForm.get('Date')?.hasError('required')">
+                      Date is required.
+                  </small>
+              </div> -->
+              </div>
+              <div class="form-group col-lg-3">
+                <div class="label" id="lblTrial" >
+                  Trial
+                </div>
+                <input
+                  type="text"
+                  id="Trial"
+                  class="form-control"
+                  formControlName="Trial"
+                >
+              </div>
+              </div>
+            </form> 
+            <br/>
+          </div>
+          <br/>
+          </div>
+        
+              <div class="modal-footer">
+                <!-- <button type="button" [disabled] = !this.isShowDivIf class="btn btn-outline-dark" (click)="submitOrganization('Save click')">Submit</button> -->
+                <button type="button" class="btn btn-primary" (click)="submitOrganization('changes saved!')">Submit</button>
+              </div> 
+          </div>
+        
+        
+                
+                

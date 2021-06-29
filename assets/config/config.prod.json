@@ -1,0 +1,12 @@
+{
+    "env": {
+        "name": "prod"
+    },
+    "logging": {
+        "debug": true,
+        "serverLoggingUrl": "http://localhost:8004/",
+        "logLevel": "ERROR",
+        "serverLogLevel": "ERROR",
+        "disableConsoleLogging": true
+    }
+}

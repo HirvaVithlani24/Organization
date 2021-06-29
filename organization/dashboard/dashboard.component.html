@@ -1,0 +1,43 @@
+
+<div style="margin-bottom: 5px;font-family: roboto!important;" class="searchBtn">
+    <input
+      type="text" 
+      (keyup)="quickSearch($event)"
+      id="quickFilter"
+      placeholder="Search.."
+      [(ngModel)]="searchValue"
+      style="width: 300px; padding-left: 12px; padding-right: 25px;"
+    />
+    <button (click)=toggleDisplayDiv() style="float:right;border-width:1px;padding-top:4px;padding-bottom:7px;opacity: 80%; background-color:#F8F8F8;" ><img src='assets/images/three-dots-vertical.svg'></button>
+        
+</div>
+<div>
+        <mat-chip-list #chipList aria-label="Fruit selection">
+          <mat-chip *ngFor="let chip of chips" [selectable]="true"
+                   [removable]="removable" (removed)="remove(chip)">
+            {{chip}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+</div>
+<div style="display: flex; flex-direction: row; height: 100%;font-family: roboto!important;">
+    <div style=" overflow: hidden; flex-grow: 1">
+        <ag-grid-angular style="height:500px" class="ag-theme-alpine" (gridReady)="onGridReady($event)" 
+            [gridOptions]="gridOptions" >
+        </ag-grid-angular>
+        <button class="btn btn-lg btn-outline-primary" (click)="openModal()" style="float:right;" >
+                Create Organization
+        </button>
+    </div>
+
+    <div [hidden]="isShowDiv" style="padding:2rem;background-color:#F8F8F8;height: 500px; border:solid 1px; border-color: #babfc7;">
+        <div *ngFor="let item of columnDefs" >
+            <input type="checkbox" *ngIf=" item.field && !item.pinned" (change)="setChange(item.field)" checked> 
+            <input type="checkbox" *ngIf=" item.pinned" (change)="setChange(item.field)" disabled> 
+            <label style="margin-left:0.5rem; margin-right: 1rem;" htmlFor="{{item.field}}" *ngIf="item.field" >{{item.headerName}}</label>
+        </div>
+    </div>
+    
+    <div [hidden]="isShowDiv" style="writing-mode: vertical-rl; text-orientation: mixed;margin:auto; border:solid 1px; border-color: #babfc7;padding:0.2rem;">Show / Hide Columns</div>
+</div>
+
